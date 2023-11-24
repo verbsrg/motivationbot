@@ -38,7 +38,7 @@ const sendQuote = async () => {
   }
 };
 
-const scheduledMessage = scheduleJob('*/3 * * * *', () => {
+const scheduledMessage = scheduleJob('0 1 * * *', async () => {
   sendQuote();
 });
 
