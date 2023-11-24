@@ -2,7 +2,7 @@ import './env.js';
 import axios from 'axios';
 import TelegramBot from 'node-telegram-bot-api';
 import { translate } from '@vitalets/google-translate-api';
-// import { scheduleJob } from 'node-schedule';
+import { scheduleJob } from 'node-schedule';
 
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
@@ -37,7 +37,10 @@ const sendQuote = async () => {
     console.error(error);
   }
 };
-sendQuote();
+
+const scheduledMessage = scheduleJob('*/3 * * * *', () => {
+  sendQuote();
+});
 
 bot.on('text', (msg) => {
   console.log(msg);
