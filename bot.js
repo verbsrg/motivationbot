@@ -2,11 +2,11 @@ import './env.js';
 import axios from 'axios';
 import TelegramBot from 'node-telegram-bot-api';
 import { translate } from '@vitalets/google-translate-api';
-import { scheduleJob } from 'node-schedule';
+import { scheduleJob, RecurrenceRule } from 'node-schedule';
 
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
-const zenQuotesUrl = 'https://zenquotes.io/api/random';
+const zenQuotesUrl = 'https://zenquotes.io/api/today';
 
 const channelId = process.env.CHANNEL_ID;
 
