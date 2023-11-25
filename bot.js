@@ -38,7 +38,12 @@ const sendQuote = async () => {
   }
 };
 
-const scheduledMessage = scheduleJob('0 1 * * *', async () => {
+const scheduleRule = new RecurrenceRule();
+scheduleRule.hour = 7;
+scheduleRule.minute = 0;
+scheduleRule.tz = 'Europe/Prague';
+
+const scheduledMessage = scheduleJob(scheduleRule, async () => {
   sendQuote();
 });
 
